@@ -17,3 +17,12 @@ You can launch the exe file on Windows startup :
 1. Create a shortcut of the exe file (right click: Create shortcut)
 2. Move the new shortcut in your startup folder : C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 3. Et voilà
+
+## Customization
+
+You can change the keyboard hotkey in this function :
+```
+HotKeySet("^+f", "HotKeyPressed") ; Ctrl+Shift+f
+```
+
+You will find how to use other special keys in this [documentation](https://www.autoitscript.com/autoit3/docs/functions/Send.htm)
