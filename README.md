@@ -12,7 +12,7 @@ Or you can compile it to exe, with the [Aut2Exe](https://www.autoitscript.com/si
 
 ## Start the program on Windows startup
 
-To can launch the exe file on Windows startup :
+You can launch the exe file on Windows startup :
 
 1. Create a shortcut of the exe file (right click: Create shortcut)
 2. Move the new shortcut in your startup folder : C:\Users\%user%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
