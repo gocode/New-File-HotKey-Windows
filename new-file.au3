@@ -34,27 +34,27 @@ EndFunc   ;==>HotKeyPressed
 Func CreateNewFile($hWnd, $Path)
 	
 		ConsoleWrite("Open path : " & $Path & @CRLF)
-		
-        ; Create a constant variable in Local scope of the message to display in FileSaveDialog.
-        Local Const $sMessage = "Créer un nouveau fichier"
 
-        ; Display a save dialog to select a file.
-        Local $sFileSaveDialog = FileSaveDialog($sMessage, $Path, "All (*.*)", $FD_PATHMUSTEXIST, "", $hWnd)
-	
-        If @error Then
-            $error = @error
+		; Create a constant variable in Local scope of the message to display in FileSaveDialog.
+		Local Const $sMessage = "Créer un nouveau fichier"
 
-            ; Display the error message.
-            ;MsgBox($MB_SYSTEMMODAL, "", "No file was saved. | Error (" & $error & ")")
-        Else
-            ; Retrieve the filename from the filepath
-            Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSEBASIC, -1))
+		; Display a save dialog to select a file.
+		Local $sFileSaveDialog = FileSaveDialog($sMessage, $Path, "All (*.*)", $FD_PATHMUSTEXIST, "", $hWnd)
 
-            ConsoleWrite("Save at : " & $Path & "\" & $sFileName & @CRLF)
+		If @error Then
+				$error = @error
 
-            FileOpen($Path & "\" & $sFileName, 1)
+				; Display the error message.
+				;MsgBox($MB_SYSTEMMODAL, "", "No file was saved. | Error (" & $error & ")")
+		Else
+				; Retrieve the filename from the filepath
+				Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSEBASIC, -1))
 
-            ; Display the saved file.
-            ;MsgBox($MB_SYSTEMMODAL, "", "You saved the following file:" & @CRLF & $sFileSaveDialog)
-        EndIf
+				ConsoleWrite("Save at : " & $Path & "\" & $sFileName & @CRLF)
+
+				FileOpen($Path & "\" & $sFileName, 1)
+
+				; Display the saved file.
+				;MsgBox($MB_SYSTEMMODAL, "", "You saved the following file:" & @CRLF & $sFileSaveDialog)
+		EndIf
 EndFunc   ;==>CreateNewFile
