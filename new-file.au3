@@ -15,16 +15,16 @@ WEnd
 Func HotKeyPressed()
 
 	;MsgBox($MB_SYSTEMMODAL, "", "This is a message.")
-	
+
 	If WinActive("[CLASS:CabinetWClass]") Then
-	
-      $hWnd = WinActive("[CLASS:CabinetWClass]");
 
-      Local $sToolbarText = ControlGetText("[ACTIVE]", "", "[CLASS:ToolbarWindow32;INSTANCE:3]")  
+		$hWnd = WinActive("[CLASS:CabinetWClass]");
 
-      Local $sAddress = StringReplace($sToolbarText, "Adresse : ", "")
+		Local $sToolbarText = ControlGetText("[ACTIVE]", "", "[CLASS:ToolbarWindow32;INSTANCE:3]")  
 
-      CreateNewFile($hWnd, $sAddress)
+		Local $sAddress = StringReplace($sToolbarText, "Adresse : ", "")
+
+		CreateNewFile($hWnd, $sAddress)
 
 	EndIf
 
@@ -33,28 +33,28 @@ EndFunc   ;==>HotKeyPressed
 
 Func CreateNewFile($hWnd, $Path)
 	
-		ConsoleWrite("Open path : " & $Path & @CRLF)
+	ConsoleWrite("Open path : " & $Path & @CRLF)
 
-		; Create a constant variable in Local scope of the message to display in FileSaveDialog.
-		Local Const $sMessage = "Créer un nouveau fichier"
+	; Create a constant variable in Local scope of the message to display in FileSaveDialog.
+	Local Const $sMessage = "Créer un nouveau fichier"
 
-		; Display a save dialog to select a file.
-		Local $sFileSaveDialog = FileSaveDialog($sMessage, $Path, "All (*.*)", $FD_PATHMUSTEXIST, "", $hWnd)
+	; Display a save dialog to select a file.
+	Local $sFileSaveDialog = FileSaveDialog($sMessage, $Path, "All (*.*)", $FD_PATHMUSTEXIST, "", $hWnd)
 
-		If @error Then
-				$error = @error
+	If @error Then
+		$error = @error
 
-				; Display the error message.
-				;MsgBox($MB_SYSTEMMODAL, "", "No file was saved. | Error (" & $error & ")")
-		Else
-				; Retrieve the filename from the filepath
-				Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSEBASIC, -1))
+		; Display the error message.
+		;MsgBox($MB_SYSTEMMODAL, "", "No file was saved. | Error (" & $error & ")")
+	Else
+		; Retrieve the filename from the filepath
+		Local $sFileName = StringTrimLeft($sFileSaveDialog, StringInStr($sFileSaveDialog, "\", $STR_NOCASESENSEBASIC, -1))
 
-				ConsoleWrite("Save at : " & $Path & "\" & $sFileName & @CRLF)
+		ConsoleWrite("Save at : " & $Path & "\" & $sFileName & @CRLF)
 
-				FileOpen($Path & "\" & $sFileName, 1)
+		FileOpen($Path & "\" & $sFileName, 1)
 
-				; Display the saved file.
-				;MsgBox($MB_SYSTEMMODAL, "", "You saved the following file:" & @CRLF & $sFileSaveDialog)
-		EndIf
+		; Display the saved file.
+		;MsgBox($MB_SYSTEMMODAL, "", "You saved the following file:" & @CRLF & $sFileSaveDialog)
+	EndIf
 EndFunc   ;==>CreateNewFile
